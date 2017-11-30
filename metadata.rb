@@ -8,8 +8,8 @@ version          '0.0.1'
 
 chef_version '>= 12.5' if respond_to?(:chef_version)
 
-source_url 'https://git.mgm.servers.com/cookbooks/chef_icinga2_handler' if respond_to?(:source_url)
-issues_url 'https://git.mgm.servers.com/cookbooks/chef_icinga2_handler/issues' if respond_to?(:issues_url)
+source_url 'https://github.com/cyberflow/chef_icinga2_handler' if respond_to?(:source_url)
+issues_url 'https://github.com/cyberflow/chef_icinga2_handler/issues' if respond_to?(:issues_url)
 
 supports 'ubuntu', '>= 16.04'
 
