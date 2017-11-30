@@ -1,0 +1,43 @@
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    sources:
+      - chef-stable-trusty
+    packages:
+      - chefdk=2.0.28-1
+
+branches:
+  only:
+    - master
+    - /^(?i:travis).*$/
+    - /^(?i:feature).*$/
+    - /^(?i:fix).*$/
+    - /^(?i:release).*$/
+
+services: docker
+
+env:
+  matrix:
+    - INSTANCE=default12-ubuntu-16
+
+script:
+  - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+  - cat .kitchen/logs/kitchen.log
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - /opt/chefdk/embedded/bin/chef --version
+  - /opt/chefdk/embedded/bin/cookstyle --version
+  - /opt/chefdk/embedded/bin/foodcritic --version
+
+
+matrix:
+  allow_failures:
+    - env: INSTANCE=default12-ubuntu-16
+  include:
+    - script:
+      - /opt/chefdk/bin/chef exec rake
+      env: UNIT_AND_LINT=1
