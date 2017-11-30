@@ -20,10 +20,14 @@ services: docker
 
 env:
   matrix:
+    - INSTANCE=default12-ubuntu-14
     - INSTANCE=default12-ubuntu-16
+    - INSTANCE=default13-ubuntu-14
+    - INSTANCE=default13-ubuntu-16
 
 script:
   - /opt/chefdk/embedded/bin/chef exec cookstyle
+  - /opt/chefdk/embedded/bin/chef exec foodcritic .
   - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/chef exec kitchen test ${INSTANCE}
   - cat .kitchen/logs/kitchen.log
 
@@ -31,9 +35,6 @@ before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
   - /opt/chefdk/embedded/bin/chef --version
-  - /opt/chefdk/embedded/bin/cookstyle --version
-  - /opt/chefdk/embedded/bin/foodcritic --version
-
 
 matrix:
   allow_failures:
