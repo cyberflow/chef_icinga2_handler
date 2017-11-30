@@ -39,5 +39,5 @@ matrix:
     - env: INSTANCE=default12-ubuntu-16
   include:
     - script:
-      - /opt/chefdk/bin/chef exec rake
+      - /opt/chefdk/bin/chef exec rake knife
       env: UNIT_AND_LINT=1

@@ -1,0 +1,36 @@
+---
+driver:
+  name: dokken
+  privileged: true
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+platforms:
+  - name: ubuntu-14
+    driver:
+      image: ubuntu:14.04
+      pid_one_command: /sbin/init
+
+  - name: ubuntu-16
+    driver:
+      image: ubuntu:16.04
+      pid_one_command: /bin/systemd
+
+suites:
+  - name: default12
+    driver:
+      chef_version: 12.21.26
+    run_list:
+      - recipe[chef_icinga2_handler::default]
+    attributes:
+
+  - name: default13
+    driver:
+      chef_version: 13.2.20
+    run_list:
+      - recipe[chef_icinga2_handler::default]
+    attributes:
