@@ -9,6 +9,8 @@ A cookbook for a chef_handler that sends reports and exceptions to Icinga2
 
 # Recipes
 
+* default
+
 ## Contributing
 
 1. Fork the repository on Github
@@ -20,4 +22,5 @@ A cookbook for a chef_handler that sends reports and exceptions to Icinga2
 
 ## License and Authors
 `chef_icinga2_handler` is provided under the Apache License 2.0. See `LICENSE` for details.
+
 Author:: servers.com (dr@servers.com)
