@@ -35,7 +35,3 @@ before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
   - /opt/chefdk/embedded/bin/chef --version
-
-matrix:
-  allow_failures:
-    - env: INSTANCE=default12-ubuntu-16
