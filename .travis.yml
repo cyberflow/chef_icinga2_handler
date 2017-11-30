@@ -23,7 +23,8 @@ env:
     - INSTANCE=default12-ubuntu-16
 
 script:
-  - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+  - /opt/chefdk/embedded/bin/chef exec cookstyle
+  - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml /opt/chefdk/embedded/bin/chef exec kitchen test ${INSTANCE}
   - cat .kitchen/logs/kitchen.log
 
 before_script:
@@ -37,7 +38,3 @@ before_script:
 matrix:
   allow_failures:
     - env: INSTANCE=default12-ubuntu-16
-  include:
-    - script:
-      - /opt/chefdk/bin/chef exec rake knife
-      env: UNIT_AND_LINT=1
