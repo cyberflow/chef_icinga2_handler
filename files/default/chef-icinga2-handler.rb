@@ -38,7 +38,7 @@ class Icinga2Reporting < Chef::Handler
           'plugin_output' => status_msg,
           'performance_data' => perf_data,
         }.to_json
-        req.basic_auth(@icinga2_user, @icinga2_pass)
+        req.basic_auth(@icinga2_api_user, @icinga2_api_pass)
         http.request(req)
       end
     rescue => e

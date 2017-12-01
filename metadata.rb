@@ -4,7 +4,7 @@ maintainer_email 'dr@servers.com'
 license          'Apache-2.0'
 description      'Installs/Configures chef_icinga2_handler'
 long_description 'Installs/Configures chef_icinga2_handler'
-version          '0.0.2'
+version          '0.0.3'
 
 chef_version '>= 12.5' if respond_to?(:chef_version)
 
